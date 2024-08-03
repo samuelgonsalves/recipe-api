@@ -1,8 +1,8 @@
 package com.recipez.recipeapi;
 
-import com.recipez.recipeapi.model.Ingredient;
-import com.recipez.recipeapi.model.Recipe;
-import com.recipez.recipeapi.model.RecipeRequest;
+import com.recipez.recipeapi.model.ingredient.Ingredient;
+import com.recipez.recipeapi.model.recipe.Recipe;
+import com.recipez.recipeapi.model.recipe.RecipeRequest;
 import com.recipez.recipeapi.repository.IngredientRepository;
 import com.recipez.recipeapi.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
@@ -53,8 +53,29 @@ public class RecipeService {
             ingredients.add(ingredient);
         }
         recipe.setIngredients(ingredients);
-
+        recipe.setTags(recipeRequest.getTags() == null ? "" : String.join(",", recipeRequest.getTags()));
         Recipe savedRecipe = recipeRepository.save(recipe);
         return savedRecipe.getId();
+    }
+
+    public void update(long id, RecipeRequest recipeRequest) {
+        Recipe recipe = recipeRepository.getReferenceById(id);
+        recipe.setDescription(recipeRequest.getDescription());
+        recipe.setTitle(recipeRequest.getTitle());
+        if (recipeRequest.getImageUrl().isPresent()) {
+            recipe.setImageUrl(recipeRequest.getImageUrl().get());
+        }
+        Set<Ingredient> ingredients = new HashSet<>();
+        for (Long ingredientId : recipeRequest.getIngredientIds()) {
+            Ingredient ingredient = ingredientRepository.findById(ingredientId).orElseThrow(() -> new IllegalArgumentException("Invalid ingredient ID: " + ingredientId));
+            ingredients.add(ingredient);
+        }
+        recipe.setIngredients(ingredients);
+        recipe.setTags(recipeRequest.getTags() == null ? "" : String.join(",", recipeRequest.getTags()));
+        recipeRepository.save(recipe);
+    }
+
+    public void delete(long id) {
+        recipeRepository.deleteById(id);
     }
 }

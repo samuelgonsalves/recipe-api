@@ -1,6 +1,7 @@
-package com.recipez.recipeapi.model;
+package com.recipez.recipeapi.model.ingredient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.recipez.recipeapi.model.recipe.Recipe;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

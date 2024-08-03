@@ -1,4 +1,4 @@
-package com.recipez.recipeapi.model;
+package com.recipez.recipeapi.model.mealplan;
 
 import java.time.LocalDate;
 

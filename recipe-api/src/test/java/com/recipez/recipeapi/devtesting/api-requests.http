@@ -1,0 +1,34 @@
+
+## Get all recipes
+
+GET http://localhost:8080/recipes
+
+
+## Get a specific recipe by id
+
+GET http://localhost:8080/recipe?id=1
+
+## Add a recipe
+POST http://localhost:8080/recipes
+Content-Type: application/json
+
+{
+    "title": "Chicken Manchurian",
+    "description": "Indo-Asian fusion chicken recipe",
+    "ingredientIds": [2, 4, 3],
+    "imageUrl": "https://pupswithchopsticks.com/wp-content/uploads/chicken-manchurian-recipe-1.jpg"
+}
+
+## Update a recipe
+PUT http://localhost:8080/recipes/1
+Content-Type: application/json
+
+{
+    "title": "Chicken Manchurian",
+    "description": "Indo-Asian fusion chicken recipe",
+    "ingredientIds": [2, 4, 3],
+    "imageUrl": "https://pupswithchopsticks.com/wp-content/uploads/chicken-manchurian-recipe-1.jpg"
+}
+
+## Remove a recipe
+DELETE http://localhost:8080/recipes/1

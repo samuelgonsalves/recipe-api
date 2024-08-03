@@ -1,4 +1,4 @@
-package com.recipez.recipeapi.model;
+package com.recipez.recipeapi.model.recipe;
 
 import java.util.Optional;
 import java.util.Set;
@@ -8,12 +8,14 @@ public class RecipeRequest {
     private String description;
     private Set<Long> ingredientIds;
     private Optional<String> imageUrl;
+    private Set<String> tags;
 
-    public RecipeRequest(String title, String description, Set<Long> ingredientIds, Optional<String> imageUrl) {
+    public RecipeRequest(String title, String description, Set<Long> ingredientIds, Optional<String> imageUrl, Set<String> tags) {
         this.title = title;
         this.description = description;
         this.ingredientIds = ingredientIds;
         this.imageUrl = imageUrl;
+        this.tags = tags;
     }
 
     public RecipeRequest() {
@@ -49,5 +51,13 @@ public class RecipeRequest {
 
     public void setImageUrl(Optional<String> imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 }

@@ -1,6 +1,7 @@
-package com.recipez.recipeapi.model;
+package com.recipez.recipeapi.model.recipe;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.recipez.recipeapi.model.ingredient.Ingredient;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,8 @@ public class Recipe {
     private String description;
     @Column(nullable = true)
     private String imageUrl;
+    @Column(nullable = true)
+    private String tags;
     @ManyToMany
     @JoinTable(
             name = "recipeingredient",
@@ -74,6 +77,14 @@ public class Recipe {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public Set<Ingredient> getIngredients() {

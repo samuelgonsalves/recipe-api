@@ -1,12 +1,13 @@
-package com.recipez.recipeapi.model;
+package com.recipez.recipeapi.model.mealplan;
 
+import com.recipez.recipeapi.model.recipe.Recipe;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
@@ -21,8 +22,8 @@ public class MealPlan {
     @Column(nullable = false)
     private LocalDate mealDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     private Recipe recipe;
 
     public MealPlan() {
